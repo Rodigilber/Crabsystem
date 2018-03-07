@@ -48,14 +48,20 @@
 	}
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
-         $q      = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-         $inicio = $_REQUEST['inicio'];
-         $fin    = $_REQUEST['fin'];
+         $q       = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
+         $inicio  = $_REQUEST['inicio'];
+         $fin     = $_REQUEST['fin'];
+         $estatus = $_REQUEST['estatus'];
+
+         // var_dump($_REQUEST);
 
 		 $aColumns  = array('nombre_cliente');//Columnas de busqueda
 		 $sTable    = "clientes";
 		 $sWhere    = "";
 		 $condition = "";
+		 $where     = "";
+
+
 		if ( $_GET['q'] != "" )
 		{
 			$sWhere = "WHERE (";
@@ -65,7 +71,36 @@
 			}
 			$sWhere = substr_replace( $sWhere, "", -3 );
 			$sWhere .= ')';
+
+		} 
+
+		// Filtrar por fechas y estatus del cliente - AND Conditions
+		if ( $inicio != '' || $fin != '' || $estatus != '')
+		{
+			// $inicio necesita de un $fin, por tanto se valida que ambas fechas hayan sido seleccionadas
+			if ( $inicio != '' && $fin != '' )
+			{
+				// Se debio haber seleccionado el estatus del cliente a filtrar para poder determinar la columna pivote
+				if ( $estatus != '' )
+				{
+					$where  = ( $q == '' ) ? " Where" : "";
+					if ( $estatus == '0' ) // Clientes activos
+					{
+						$condition = " status_cliente = 1 AND initservprof_clientes BETWEEN '".$inicio."' AND '".$fin."'";
+					} else {
+						// Clientes Inactivos
+						$condition = " status_cliente <> 1 AND finservprof_clientes BETWEEN '".$inicio."' AND '".$fin."'";
+					}
+				}
+			}
 		}
+
+		$and    = ( $sWhere != '' ) ? " AND" : "";
+		$sWhere .= $where.$and.$condition;
+		// var_dump( $sWhere );
+		// var_dump( $sTable );
+		// // exit();
+
 		$sWhere.=" order by id_cliente desc";
 		include 'pagination.php'; //include pagination file
 		//pagination variables

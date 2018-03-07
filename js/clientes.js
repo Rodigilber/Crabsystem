@@ -7,12 +7,13 @@
 		});
 
 	function load(page){
-			var q      = $("#q").val();
-			var inicio = $("#datepicker4").val();
-			var fin    = $("#datepicker5").val();
+			var q       = $("#q").val();
+			var inicio  = $("#datepicker4").val();
+			var fin     = $("#datepicker5").val();
+			var estatus = $("#estatus").val();
 			$("#loader").fadeIn('slow');
 			$.ajax({
-				url:'./ajax/buscar_clientes.php?action=ajax&page='+page+'&q='+q+'&inicio='+inicio+'&fin='+fin,
+				url:'./ajax/buscar_clientes.php?action=ajax&page='+page+'&q='+q+'&inicio='+inicio+'&fin='+fin+'&estatus='+estatus,
 				 beforeSend: function(objeto){
 				 $('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
 			  },

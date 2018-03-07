@@ -59,20 +59,29 @@
 
 					 <div class="form-row">
 					 	<!-- Cliente -->
-					    <div class="form-group col-md-4">
+					    <div class="form-group col-md-3">
 					      <label for="q">Cliente</label>
 					      <input type="text" class="form-control" id="q" placeholder="Nombre del cliente" onkeyup='load(1);'>
 					    </div>
 					    <!-- Inicio -->
-					    <div class="form-group col-md-3">
+					    <div class="form-group col-md-2">
 					      <label for="inputCity">Fecha Inicial</label>
-					      <input type="text" class="form-control" id="datepicker4" placeholder="Fecha Inicio" disabled>
+					      <input type="text" class="form-control" id="datepicker4" placeholder="Fecha Inicio">
 					    </div>
 					    <!-- Fin -->
-					    <div class="form-group col-md-3">
+					    <div class="form-group col-md-2">
 					      <label for="inputZip">Fecha Final</label>
-					      <input type="text" class="form-control" id="datepicker5" placeholder="Fecha Final" disabled>
+					      <input type="text" class="form-control" id="datepicker5" placeholder="Fecha Final">
 					    </div>
+					    <!-- Activos o Inactivos -->
+						<div class="form-group col-md-3">
+							 <label for="estatus">Estatus del Cliente</label>
+							 <select class="form-control" id="estatus" name="estatus">
+								<option value="" selected>-- Selecciona una opcion --</option>
+								<option value="0">Activos</option>
+								<option value="1">Inactivos</option>
+							  </select>							
+						</div>					    
 					  </div>	
 
 					  <div class="form-group row">
