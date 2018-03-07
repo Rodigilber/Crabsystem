@@ -116,16 +116,6 @@ $simbolo_moneda=get_row('perfil','moneda', 'id_perfil', 1);
 		<td></td>
 	</tr>
 
-	<tr>
-		<td class='text-right' colspan=4>EFECTIVO <?php echo $simbolo_moneda;?></td>
-		<td class='text-right'><input type="text" class="form-control input-sm" id="efectivo" placeholder="00"></td>
-		<td></td>
-	</tr>
 
-	<tr>
-		<td class='text-right' colspan=4>PENDIENTE <?php echo $simbolo_moneda;?></td>
-		<td class='text-right'><input type="text" class="form-control input-sm" id="pendiente" placeholder="00"></td>
-		<td></td>
-	</tr>
 
 </table>
