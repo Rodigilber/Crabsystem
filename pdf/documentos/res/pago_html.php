@@ -93,6 +93,7 @@
             <th style="width: 10%;text-align:center" class='midnight-blue'>No. Pago</th>
             <th style="width: 5%"; class='midnight-blue'>Mes de Pago</th>
             <th style="width: 5%"; class='midnight-blue'>Fecha de Pago</th>
+            <th style="width: 5%"; class='midnight-blue'>Cobrado por</th>
             <th style="width: 15%;text-align: right" class='midnight-blue'>Monto Pagado</th>
             <th style="width: 15%;text-align: right" class='midnight-blue'>Saldo Anterior</th>
             <th style="width: 15%;text-align: right" class='midnight-blue'>Saldo Actual</th>
@@ -106,10 +107,11 @@ $sumador_total=0;
 // $sql=mysqli_query($con, "select * from products, tmp where products.id_producto=tmp.id_producto and tmp.session_id='".$session_id."'");
 
 $sql = "Select a.numero_factura, a.id_cliente, c.nombre_cliente, a.fecha_factura, a.total_venta,
-					       b.idPago, b.montoPagado, b.saldoAnterior, b.saldoActual, b.fechaPago
+					       b.idPago, b.montoPagado, b.saldoAnterior, b.saldoActual, b.fechaPago, d.firstname
 					From tblpagos b 
 							INNER JOIN facturas a ON b.idFactura = a.id_factura
 							INNER JOIN clientes c ON c.id_cliente = a.id_cliente
+							INNER JOIN users d ON d.user_id = b.idVendedor
 					Where a.id_factura =".$_GET['idRecibo'];
 
 $query = mysqli_query($con, $sql);					
@@ -136,6 +138,7 @@ while ($row=mysqli_fetch_array($query))
 		$mes            = $meses[$_mes-1];
 
 		$fecha_Pago     = date("d/m/Y", strtotime($row['fechaPago']));
+		$cobradoPor     = $row['firstname'];
 		$montoPagado    = $row["montoPagado"];
 		$saldoAnterior  = $row["saldoAnterior"];
 		$saldoActual    = $row["saldoActual"];
@@ -144,11 +147,12 @@ while ($row=mysqli_fetch_array($query))
 
 						<tr>
 							<td style="width: 10%; text-align: center"><?php echo $numero_factura; ?></td>
-							<td style="width: 30%; text-align: center"><?php echo $mes; ?></td>
-							<td style="width: 30%; text-align: center"><?php echo $fecha_Pago; ?></td>
-							<td style="width: 15%; text-align: center"><?php echo $montoPagado; ?></td>
-							<td style="width: 15%; text-align: center"><?php echo $saldoAnterior; ?></td>
-							<td style="width: 15%; text-align: center"><?php echo $saldoActual; ?></td>				
+							<td style="width: 20%; text-align: center"><?php echo $mes; ?></td>
+							<td style="width: 20%; text-align: center"><?php echo $fecha_Pago; ?></td>
+							<td style="width: 12%; text-align: center"><?php echo $cobradoPor; ?></td>
+							<td style="width: 12%; text-align: center"><?php echo $montoPagado; ?></td>
+							<td style="width: 12%; text-align: center"><?php echo $saldoAnterior; ?></td>
+							<td style="width: 12%; text-align: center"><?php echo $saldoActual; ?></td>				
 						</tr>
 
 <?php 
