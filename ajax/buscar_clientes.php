@@ -92,6 +92,12 @@
 						$condition = " status_cliente <> 1 AND finservprof_clientes BETWEEN '".$inicio."' AND '".$fin."'";
 					}
 				}
+			} else {
+				if ( $estatus != '' )
+				{
+					$status    = ( $estatus == '0' ) ? "1" : "2"; 
+					$condition = " where status_cliente = ".$status;
+				}
 			}
 		}
 
