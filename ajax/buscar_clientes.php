@@ -86,23 +86,24 @@
 					$where  = ( $q == '' ) ? " Where" : "";
 					if ( $estatus == '0' ) // Clientes activos
 					{
-						$condition = " status_cliente = 1 AND initservprof_clientes BETWEEN '".$inicio."' AND '".$fin."'";
+						$condition = $where." status_cliente = 1 AND initservprof_clientes BETWEEN '".$inicio."' AND '".$fin."'";
 					} else {
 						// Clientes Inactivos
-						$condition = " status_cliente <> 1 AND finservprof_clientes BETWEEN '".$inicio."' AND '".$fin."'";
+						$condition = $where." status_cliente <> 1 AND finservprof_clientes BETWEEN '".$inicio."' AND '".$fin."'";
 					}
 				}
 			} else {
 				if ( $estatus != '' )
 				{
 					$status    = ( $estatus == '0' ) ? "1" : "0"; 
-					$condition = " where status_cliente = ".$status;
+					$where     = ( $sWhere != '' ) ? '' : ' where';
+					$condition = $where." status_cliente = ".$status;
 				}
 			}
 		}
 
 		$and    = ( $sWhere != '' && $condition != '') ? " AND" : "";
-		$sWhere .= $where.$and.$condition;
+		$sWhere .= $and.$condition;
 		// var_dump( $sWhere );
 		// var_dump( $sTable );
 		// exit();
