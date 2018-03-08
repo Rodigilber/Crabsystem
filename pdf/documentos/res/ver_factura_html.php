@@ -108,10 +108,16 @@ while ($row=mysqli_fetch_array($sql))
 	$nombre_producto=$row['nombre_producto'];
 	
 	$precio_venta=$row['precio_venta'];
+
+	$saldo=$row['saldo'];
+
 	$precio_venta_f=number_format($precio_venta,2);//Formateo variables
 	$precio_venta_r=str_replace(",","",$precio_venta_f);//Reemplazo las comas
 	$precio_total=$precio_venta_r*$cantidad;
 	$precio_total_f=number_format($precio_total,2);//Precio total formateado
+
+ 
+
 	$precio_total_r=str_replace(",","",$precio_total_f);//Reemplazo las comas
 	$sumador_total+=$precio_total_r;//Sumador
 	if ($nums%2==0){
@@ -164,6 +170,13 @@ while ($row=mysqli_fetch_array($sql))
             <td colspan="3" style="widtd: 85%; text-align: right;">TOTAL <?php echo $simbolo_moneda;?> </td>
             <td style="widtd: 15%; text-align: right;"> <?php echo number_format($subtotal,2);?></td>
         </tr>
+
+
+   <tr>
+            <td colspan="3" style="widtd: 85%; text-align: right;">SALDO <?php echo $simbolo_moneda;?> </td>
+            <td style="widtd: 15%; text-align: right;"> <?php echo number_format($saldo,2);?></td>
+        </tr>
+
     </table>
 	
 	

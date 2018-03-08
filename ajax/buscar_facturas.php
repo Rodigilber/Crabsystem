@@ -108,7 +108,7 @@
 						<td class='text-right'><?php echo number_format ($saldoRecibo,2); ?></td>				
 					<td class="text-right">
 						<a href="editar_factura.php?id_factura=<?php echo $id_factura;?>" class='btn btn-default' title='Editar factura' ><i class="glyphicon glyphicon-edit"></i></a> 
-						<a href="#" class='btn btn-default' title='Descargar factura' onclick="imprimir_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-download"></i></a> 
+						<a href="#" class='btn btn-default' title='Descargar factura' onclick="imprimir_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-print"></i></a> 
 						<a href="#" class='btn btn-default' title='Borrar factura' onclick="eliminar('<?php echo $numero_factura; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 						<a href="pagos.php?idFactura=<?php echo $id_factura?>" class='btn btn-default' title='Pagar'><i class="glyphicon glyphicon-usd"></i> </a>
 					</td>
