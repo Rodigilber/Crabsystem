@@ -95,17 +95,17 @@
 			} else {
 				if ( $estatus != '' )
 				{
-					$status    = ( $estatus == '0' ) ? "1" : "2"; 
+					$status    = ( $estatus == '0' ) ? "1" : "0"; 
 					$condition = " where status_cliente = ".$status;
 				}
 			}
 		}
 
-		$and    = ( $sWhere != '' ) ? " AND" : "";
+		$and    = ( $sWhere != '' && $condition != '') ? " AND" : "";
 		$sWhere .= $where.$and.$condition;
 		// var_dump( $sWhere );
 		// var_dump( $sTable );
-		// // exit();
+		// exit();
 
 		$sWhere.=" order by id_cliente desc";
 		include 'pagination.php'; //include pagination file
