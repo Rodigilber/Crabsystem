@@ -19,7 +19,7 @@
 	$active_clientes="";
 	$active_usuarios="";	
 	$active_pagos   = "";
-	$title="Productos | ControlSys";
+	$title="Regimenes | ControlSys";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,14 +30,14 @@
 	<?php
 		include("navbar.php");
 		include("modal/registro_regimen.php");
-		include("modal/editar_productos.php");	
+		// include("modal/editar_productos.php");	
 	?>
 
     <div class="container">
 	<div class="panel panel-info">
 		<div class="panel-heading">
 		    <div class="btn-group pull-right">
-				<button type='button' class="btn btn-info" data-toggle="modal" data-target="#nuevoProducto"><span class="glyphicon glyphicon-plus" ></span> Nuevo Regim&eacute;n</button>
+				<button type='button' class="btn btn-info" data-toggle="modal" data-target="#nuevoRegimen"><span class="glyphicon glyphicon-plus" ></span> Nuevo Regim&eacute;n</button>
 			</div>
 			<h4><i class='glyphicon glyphicon-search'></i> Buscar Regim&eacute;n</h4>
 		</div>
@@ -159,7 +159,7 @@ function editarRegimen(idRegimen)
 		success: function(datos){
 
 			// Abrir la ventana modal para modificacion delos regimenes
-			$('#nuevoProducto').modal();
+			$('#nuevoRegimen').modal();
 
 			$("#codigo").val(datos.claveRegimen);
 			$("#descripcion").val(datos.regimen);
