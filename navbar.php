@@ -35,6 +35,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class='glyphicon glyphicon-th'></i> Cat&aacute;logos <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="regimenes.php">Regimenes Fiscales</a></li>
+             <li><a href="obligaciones.php">obligaciones Fiscales</a></li>
           </ul>
         </li>        
 
