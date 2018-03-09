@@ -48,10 +48,10 @@
 						<div class="form-group row">
 							<label for="q" class="col-md-2 control-label">Código o nombre</label>
 							<div class="col-md-5">
-								<input type="text" class="form-control" id="q" placeholder="Código o nombre del regimen" onkeyup='load(0);'>
+								<input type="text" class="form-control" id="q" placeholder="Código o nombre del regimen" onkeyup='load($(this).val());'>
 							</div>
 							<div class="col-md-3">
-								<button type="button" class="btn btn-default" onclick='load(1);'>
+								<button type="button" class="btn btn-default" onclick='load( $("#q").val() );'>
 									<span class="glyphicon glyphicon-search" ></span> Buscar</button>
 								<span id="loader"></span>
 							</div>
@@ -105,11 +105,11 @@ $(document).ready(function(){
 })
 
 // Carga la informacion de pagos de un recibo seleccionado
-function load(page){
+function load(search){
 	$("#loader").fadeIn('slow');
 
 	$.ajax({
-		url:'./ajax/buscar_regimen.php?action=ajax',
+		url:'./ajax/buscar_regimen.php?action=ajax&search='+search,
 			beforeSend: function(objeto){
 				$('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
 			},

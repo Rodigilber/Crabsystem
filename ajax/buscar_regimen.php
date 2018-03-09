@@ -37,9 +37,24 @@
 	if($action == 'ajax'){
 
 		// Buscar los pagos realizados a la factura seleccionada
-		$sql = "Select * From tblregimenes";
+		$sWhere   = "Select * From tblregimenes ";
+		// Columnas a buscar dentro de la tabla de regimenes
+		$aColumns = array('claveRegimen','regimen');
 
-		$query = mysqli_query($con, $sql);
+		$search = $_GET['search'];
+		if ( $search != "" )
+		{
+			$sWhere .= "WHERE ( ";
+			for ( $i=0 ; $i<count($aColumns) ; $i++ )
+			{
+				$sWhere .= $aColumns[$i]." LIKE '%".$search."%' OR ";
+			}
+			$sWhere = substr_replace( $sWhere, "", -3 );
+			$sWhere .= ')';
+
+		} 
+
+		$query = mysqli_query($con, $sWhere);
 
 		// Si hay pagos, mostrarlos
 		if ( $query->num_rows > 0 )
