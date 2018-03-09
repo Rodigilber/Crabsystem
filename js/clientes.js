@@ -201,8 +201,8 @@ $( "#editar_cliente" ).submit(function( event ) {
 
 			//$('#mod_regfiscal').prop('checked', true);
 
-				alert(regfiscal_cliente);
-			 alert(obligaciones_fisc_cliente);
+//				alert(regfiscal_cliente);
+//			 alert(obligaciones_fisc_cliente);
 
 
 		}
