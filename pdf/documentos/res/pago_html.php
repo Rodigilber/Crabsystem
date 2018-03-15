@@ -99,67 +99,70 @@
             <th style="width: 15%;text-align: right" class='midnight-blue'>Saldo Actual</th>
         </tr>
 
-<?php
-$nums=1;
-$sumador_total=0;
+			<?php
 
-//geting the all that was stored in Tmp and it will be converted to "row" Array
-// $sql=mysqli_query($con, "select * from products, tmp where products.id_producto=tmp.id_producto and tmp.session_id='".$session_id."'");
+					$nums=1;
+					$sumador_total=0;
 
-$sql = "Select a.numero_factura, a.id_cliente, c.nombre_cliente, a.fecha_factura, a.total_venta,
-					       b.idPago, b.montoPagado, b.saldoAnterior, b.saldoActual, b.fechaPago, d.firstname
-					From tblpagos b 
-							INNER JOIN facturas a ON b.idFactura = a.id_factura
-							INNER JOIN clientes c ON c.id_cliente = a.id_cliente
-							INNER JOIN users d ON d.user_id = b.idVendedor
-					Where a.id_factura =".$_GET['idRecibo'];
+					//geting the all that was stored in Tmp and it will be converted to "row" Array
+					// $sql=mysqli_query($con, "select * from products, tmp where products.id_producto=tmp.id_producto and tmp.session_id='".$session_id."'");
 
-$query = mysqli_query($con, $sql);					
-$meses = array("Enero",
-	           "Febrero",
-	           "Marzo",
-	           "Abril",
-	           "Mayo",
-	           "Junio",
-	           "Julio",
-	           "Agosto",
-	           "Septiembre",
-	           "Octubre",
-	           "Noviembre",
-	           "Diciembre" );
+					$sql = "Select a.numero_factura, a.id_cliente, c.nombre_cliente, a.fecha_factura, a.total_venta,
+										       b.idPago, b.montoPagado, b.saldoAnterior, b.saldoActual, b.fechaPago, d.firstname
+										From tblpagos b 
+												INNER JOIN facturas a ON b.idFactura = a.id_factura
+												INNER JOIN clientes c ON c.id_cliente = a.id_cliente
+												INNER JOIN users d ON d.user_id = b.idVendedor
+										Where a.id_factura =".$_GET['idRecibo'];
+
+					$query = mysqli_query($con, $sql);					
+					$meses = array("Enero",
+						           "Febrero",
+						           "Marzo",
+						           "Abril",
+						           "Mayo",
+						           "Junio",
+						           "Julio",
+						           "Agosto",
+						           "Septiembre",
+						           "Octubre",
+						           "Noviembre",
+						           "Diciembre" );
 
 
-while ($row=mysqli_fetch_array($query))
-{
-		
-		$numero_factura = $row["idPago"];
-		$fecha_factura  = date("d/m/Y", strtotime($row['fecha_factura']));
-		$_mes           = date("n",strtotime($row['fecha_factura']));
-		$mes            = $meses[$_mes-1];
+					while ($row=mysqli_fetch_array($query))
+					{
+							
+							$numero_factura = $row["idPago"];
+							$fecha_factura  = date("d/m/Y", strtotime($row['fecha_factura']));
+							$_mes           = date("n",strtotime($row['fecha_factura']));
+							$mes            = $meses[$_mes-1];
 
-		$fecha_Pago     = date("d/m/Y", strtotime($row['fechaPago']));
-		$cobradoPor     = $row['firstname'];
-		$montoPagado    = $row["montoPagado"];
-		$saldoAnterior  = $row["saldoAnterior"];
-		$saldoActual    = $row["saldoActual"];
+							$fecha_Pago     = date("d/m/Y", strtotime($row['fechaPago']));
+							$cobradoPor     = $row['firstname'];
+							$montoPagado    = $row["montoPagado"];
+							$saldoAnterior  = $row["saldoAnterior"];
+							$saldoActual    = $row["saldoActual"];
 
-?>
+			?>
 
-						<tr>
-							<td style="width: 10%; text-align: center"><?php echo $numero_factura; ?></td>
-							<td style="width: 20%; text-align: center"><?php echo $mes; ?></td>
-							<td style="width: 20%; text-align: center"><?php echo $fecha_Pago; ?></td>
-							<td style="width: 12%; text-align: center"><?php echo $cobradoPor; ?></td>
-							<td style="width: 12%; text-align: center"><?php echo $montoPagado; ?></td>
-							<td style="width: 12%; text-align: center"><?php echo $saldoAnterior; ?></td>
-							<td style="width: 12%; text-align: center"><?php echo $saldoActual; ?></td>				
-						</tr>
 
-<?php 
 
-}
+								<tr>
+									<td style="width: 10%; text-align: center"><?php echo $numero_factura; ?></td>
+									<td style="width: 20%; text-align: center"><?php echo $mes; ?></td>
+									<td style="width: 20%; text-align: center"><?php echo $fecha_Pago; ?></td>
+									<td style="width: 12%; text-align: center"><?php echo $cobradoPor; ?></td>
+									<td style="width: 12%; text-align: center"><?php echo $montoPagado; ?></td>
+									<td style="width: 12%; text-align: center"><?php echo $saldoAnterior; ?></td>
+									<td style="width: 12%; text-align: center"><?php echo $saldoActual; ?></td>				
+								</tr>
 
-?>
+					<?php 
+
+					}
+
+					?>
 
     </table>
 	
