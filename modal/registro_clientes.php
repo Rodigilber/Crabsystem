@@ -16,9 +16,9 @@
 
 
 				<div class="form-group">
-				<label for="NCONTRIBUYENTE" class="col-sm-3 control-label"># DE CONTRIBUYENTES</label>
+				<label for="ncontribuyente" class="col-sm-3 control-label"># DE CONTRIBUYENTES</label>
 				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="NCONTRIBUYENTE" name="NCONTRIBUYENTE">
+				  <input type="text" class="form-control" id="ncontribuyente" name="ncontribuyente">
 				</div>
 			  </div>
 

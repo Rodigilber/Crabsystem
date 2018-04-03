@@ -73,6 +73,7 @@
 					      <label for="inputZip">Fecha Final</label>
 					      <input type="text" class="form-control" id="datepicker5" placeholder="Fecha Final">
 					    </div>
+
 					    <!-- Activos o Inactivos -->
 						<div class="form-group col-md-3">
 							 <label for="estatus">Estatus del Cliente</label>
@@ -81,7 +82,9 @@
 								<option value="0">Activos</option>
 								<option value="1">Inactivos</option>
 							  </select>							
-						</div>					    
+						</div>	
+
+										    
 					  </div>	
 
 					  <div class="form-group row">
@@ -95,7 +98,7 @@
 
 			</form>
 
-<br><br>
+ 
 
  <form action="export.php" method="post" name="export_excel">
 	<div class="control-group">

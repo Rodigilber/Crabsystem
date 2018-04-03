@@ -39,14 +39,14 @@
 				
 						<div class="form-group row">
 							<label for="q" class="col-md-2 control-label">Cliente o # de Recibo</label>
-							<div class="col-md-5">
+							<div class="col-md-3">
 								<input type="text" class="form-control" id="q" placeholder="Nombre del cliente o # de Recibo" onkeyup='load(1);'>
 							</div>
 							
+			
 							
-							
-							<div class="col-md-3">
-								<button type="button" class="btn btn-default" onclick='load(1);'>
+							<div class="col-md-2">
+								<button type="button" class="btn btn-default pull-right" onclick='load(1);'>
 									<span class="glyphicon glyphicon-search" ></span> Buscar</button>
 								<span id="loader"></span>
 							</div>
