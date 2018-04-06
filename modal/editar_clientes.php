@@ -122,7 +122,7 @@
 				</div>
 			  </div>
 
--->
+
 
 
  			<div class="form-group">
@@ -137,6 +137,36 @@
 				  <input type="checkbox" name="mod_obfiscales[]" value="IVA RETENIDO AL 4%" />IVA RETENIDO AL 4%<br /> 
 				</div>
 			  </div>
+
+-->
+
+	<!-- Obligaciones Fiscales -->
+   				<div class="form-group">
+					<label for="obfiscales" class="col-sm-3 control-label">OBLIGACIONES FISCALES</label>
+					<div class="col-sm-8">
+
+						<?php
+
+							// Added By 
+							// Mostrar de forma dinamica la lista de Obligaciones guardados en la tabla tblObligaciones
+							$sql   = "Select * from tblobligaciones";
+							$query = mysqli_query($con, $sql);
+
+							while ($row=mysqli_fetch_array($query)) {
+							?>
+
+								<input type="checkbox" name="obfiscal[]" id="<?php echo $row['idobligacion'] ?>_checkbox" value="<?php echo $row['idobligacion'] ?>" /> <?php echo $row["obligacion"] ?><br />
+
+							<?php
+
+							}
+
+						?>
+		 
+					</div>
+			  	</div>
+
+
 
 
 			  <div class="form-group">

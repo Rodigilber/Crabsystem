@@ -148,7 +148,7 @@
 			</tr>
 				<?php
 				while ($row=mysqli_fetch_array($query)){
-						$id_cliente=$row['id_cliente'];
+						$id_cliente=$row['ncontribuyente'];
 						$nombre_cliente=$row['nombre_cliente'];
 
 						$initservprof_cliente=$row['initservprof_clientes'];

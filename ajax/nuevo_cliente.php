@@ -11,6 +11,8 @@
 				require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 				require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 				// escaping, additionally removing everything that could be (html/javascript-) code
+				
+				$ncontribuyente=mysqli_real_escape_string($con,(strip_tags($_POST["ncontribuyente"],ENT_QUOTES)));
 				$nombre=mysqli_real_escape_string($con,(strip_tags($_POST["nombre"],ENT_QUOTES)));
 
 				$initservprof=mysqli_real_escape_string($con,(strip_tags($_POST["initservprof"],ENT_QUOTES)));
@@ -25,9 +27,14 @@
 				$seleccionados  = join( ',',$_regimenFiscal );
 				$regfiscal      = $seleccionados;
 
+				$_obligacionfiscal = $_POST["obfiscal"];
+				$obfseleccionados  = join( ',',$_obligacionfiscal );
+				$obfiscal      = $obfseleccionados;
+
+
 				$contabilidad=mysqli_real_escape_string($con,(strip_tags($_POST["contabilidad"],ENT_QUOTES)));
 				//$obfiscales=mysqli_real_escape_string($con,(strip_tags($_POST["obfiscales"],ENT_QUOTES)));
-				$obfiscales=implode(",",$_POST["obfiscales"]);
+				//$obfiscales=implode(",",$_POST["obfiscales"]);
 				$auxiliar=mysqli_real_escape_string($con,(strip_tags($_POST["auxiliar"],ENT_QUOTES)));
 				$rfc=mysqli_real_escape_string($con,(strip_tags($_POST["rfc"],ENT_QUOTES)));
 				$contrdrfc=mysqli_real_escape_string($con,(strip_tags($_POST["contrdrfc"],ENT_QUOTES)));
@@ -45,8 +52,8 @@
 				//$obfiscales2 = implode(",",$_POST["obfiscales2"]);
 			
 				
-				$sql="INSERT INTO clientes (nombre_cliente, initservprof_clientes, finservprof_clientes, regimen_fiscal_cliente,contabilidad_cliente,obligaciones_fisc_cliente,auxiliar_cliente_cliente,rfc_cliente_cliente,contr_rfc_cliente,contr_efirma_cliente,vigencia_efirma_cliente,nrp_cliente,fiel_imss_cliente,imss_patrones_cliente,infonavit_patrones_cliente,telefono_cliente, email_cliente, direccion_cliente, status_cliente, date_added) 
-									VALUES ('$nombre', '$initservprof', '$finservprof','$regfiscal','$contabilidad','$obfiscales','$auxiliar','$rfc','$contrdrfc','$contrefirma','$expefirma','$nrp','$fielimss','$imsspatrones','$infonapatrones','$telefono','$email','$direccion','$estado','$date_added')";
+				$sql="INSERT INTO clientes ( ncontribuyente ,nombre_cliente, initservprof_clientes, finservprof_clientes, regimen_fiscal_cliente,contabilidad_cliente,obligaciones_fisc_cliente,auxiliar_cliente_cliente,rfc_cliente_cliente,contr_rfc_cliente,contr_efirma_cliente,vigencia_efirma_cliente,nrp_cliente,fiel_imss_cliente,imss_patrones_cliente,infonavit_patrones_cliente,telefono_cliente, email_cliente, direccion_cliente, status_cliente, date_added) 
+									VALUES ( '$ncontribuyente','$nombre', '$initservprof', '$finservprof','$regfiscal','$contabilidad','$obfiscal','$auxiliar','$rfc','$contrdrfc','$contrefirma','$expefirma','$nrp','$fielimss','$imsspatrones','$infonapatrones','$telefono','$email','$direccion','$estado','$date_added')";
 
 									
 				$query_new_insert = mysqli_query($con,$sql);

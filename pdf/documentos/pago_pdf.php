@@ -40,7 +40,7 @@
 
 	// var_dump( $result );
 
-	$id_cliente     = $result->id_cliente;
+	$id_cliente     = $result->id_cliente; //to used in the pago_html.php QUERY
 	$idPago         = $result->idPago;
 	$numero_factura = $result->numero_factura;
 		

@@ -28,6 +28,11 @@
 		$seleccionados  = join( ',',$_regimenFiscal );
 		$regfiscal      = $seleccionados;		
 
+
+		$_obligacionfiscal = $_POST["obfiscal"];
+		$obfseleccionados  = join( ',',$_obligacionfiscal );
+		$obfiscal      = $obfseleccionados;
+
 		$contabilidad=mysqli_real_escape_string($con,(strip_tags($_POST["mod_contabilidad"],ENT_QUOTES)));
 
 		$obfiscales=mysqli_real_escape_string($con,(strip_tags($_POST["mod_obfiscales"],ENT_QUOTES)));
@@ -56,7 +61,7 @@
 	
 								regimen_fiscal_cliente='".$regfiscal."', 
 								contabilidad_cliente='".$contabilidad."', 
-								obligaciones_fisc_cliente='".$obfiscales."', 
+								obligaciones_fisc_cliente='".$regfiscal."', 
 								auxiliar_cliente_cliente='".$auxiliar."', 
 								rfc_cliente_cliente='".$rfc."', 
 								contr_rfc_cliente='".$contrdrfc."', 
