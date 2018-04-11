@@ -37,6 +37,9 @@
          $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
 		  $sTable = "facturas, clientes, users";
 		 $sWhere = "";
+
+
+		 
 		 $sWhere.=" WHERE facturas.id_cliente=clientes.id_cliente and facturas.id_vendedor=users.user_id";
 		if ( $_GET['q'] != "" )
 		{
