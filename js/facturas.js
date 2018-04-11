@@ -1,5 +1,10 @@
 		$(document).ready(function(){
 			load(1);
+
+			// Al seleccionar un filtro por status de factura realizar la busqueda 
+			$("#estado").change(function(){
+				load(1);
+			})
 			
 		});
 
@@ -8,9 +13,14 @@
 //adding in each row  the corresponding buttons one of the is Edit, which take the  factura  id and take us to editar factura. 
 		function load(page){
 			var q= $("#q").val();
+
+			// Estado del Recibo
+			let status = $("#estado").val(); // 2 - Todos, 0 - Pagado, 1 - Pendiente
+
 			$("#loader").fadeIn('slow');
+
 			$.ajax({
-				url:'./ajax/buscar_facturas.php?action=ajax&page='+page+'&q='+q,
+				url:'./ajax/buscar_facturas.php?action=ajax&page='+page+'&q='+q+'&status='+status,
 				 beforeSend: function(objeto){
 				 $('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
 			  },
