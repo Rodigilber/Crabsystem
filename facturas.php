@@ -52,9 +52,10 @@
 							 <label for="estado" class="control-label">Estado</label>
 							 <div class="col-md-3">
 							 <select class="form-control" id="estado" name="estado">
-								<option value="" selected>-- Selecciona una opcion --</option>
-								<option value="0">pagado</option>
-								<option value="1">pendiente</option>
+								<!-- <option value="" selected> Selecciona una opcion </option> -->
+								<option value="2" selected>Todos</option>
+								<option value="0">Pagado</option>
+								<option value="1">Pendiente</option>
 							  </select>							
 						</div>	
 						</div>	

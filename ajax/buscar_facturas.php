@@ -40,10 +40,18 @@
 		 $sWhere.=" WHERE facturas.id_cliente=clientes.id_cliente and facturas.id_vendedor=users.user_id";
 		if ( $_GET['q'] != "" )
 		{
-		$sWhere.= " and  (clientes.nombre_cliente like '%$q%' or facturas.numero_factura like '%$q%')";
+		$sWhere.= " and (clientes.nombre_cliente like '%$q%' or facturas.numero_factura like '%$q%')";
 			
 		}
 		
+		// Added By Jorge Manzano 08.04.2018
+		// Anexar a la query el filtrado por status de Recibo
+		$status = $_REQUEST["status"];
+
+		// Si hay un filtro especifico por status de factura
+		if ( $status != "2" )
+			$sWhere .= ( $status == "1" ) ? " and saldo > 0 " : " and saldo = 0";
+
 		$sWhere.=" order by facturas.id_factura desc";
 		include 'pagination.php'; //include pagination file
 		//pagination variables
