@@ -1,6 +1,4 @@
     <?php
-     
-
 
     require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
     require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos 
@@ -84,10 +82,11 @@
       $filename = "clientes_" . date('Ymd') . ".xlsx";
 
       header("Content-Disposition: attachment; filename=\"$filename\"");
-      header("Content-Type: application/vnd.ms-excel");
+      header('Content-Type: application/vnd.ms-excel; charset=utf-8');
+
 
       $flag   = false;
-      $result = mysqli_query($con, "SELECT * FROM clientes ORDER BY nombre_cliente") or die('Query failed!');
+      $result = mysqli_query($con, "SELECT nombre_cliente as Nombre, telefono_cliente as Telefono, email_cliente as Email, direccion_cliente as Direccion, date_added as Agregado  FROM clientes ORDER BY nombre_cliente") or die('Query failed!');
 
       while( $row = mysqli_fetch_assoc($result))  {
 
@@ -102,6 +101,7 @@
         echo implode("\t", array_values($row)) . "\r\n";
 
       }
+
       exit;    
      
     ?>
