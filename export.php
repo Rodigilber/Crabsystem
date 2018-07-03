@@ -79,14 +79,14 @@
       }
 
       // Nomnbre del archivo a bajar
-      $filename = "clientes_" . date('Ymd') . ".xlsx";
+      $filename = "clientes_" . date('Ymd') . ".xls";
 
       header("Content-Disposition: attachment; filename=\"$filename\"");
       header('Content-Type: application/vnd.ms-excel; charset=utf-8');
 
 
       $flag   = false;
-      $result = mysqli_query($con, "SELECT nombre_cliente as Nombre, telefono_cliente as Telefono, email_cliente as Email, direccion_cliente as Direccion, date_added as Agregado  FROM clientes ORDER BY nombre_cliente") or die('Query failed!');
+      $result = mysqli_query($con, "SELECT * FROM clientes ORDER BY nombre_cliente") or die('Query failed!');
 
       while( $row = mysqli_fetch_assoc($result))  {
 
