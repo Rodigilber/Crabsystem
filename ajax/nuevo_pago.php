@@ -23,10 +23,11 @@ function guardarPago( $idRecibo, $datos, $action )
 
 	$saldoPendiente = $datos['saldoPendiente'];
 	$fechaPago      = date('Y-m-d', strtotime($datos['fechaPago'])); 
+	$conceptoPago   = $datos['conceptoPago'];
 	$montoPagar     = $datos['montoPagar'];
 	$nuevoSaldo     = $saldoPendiente - $montoPagar;
 
-	$insert = "insert into tblpagos(idFactura, fechaPago, montoPagado, saldoAnterior, saldoActual, idVendedor) values('".$idRecibo."','".$fechaPago."','".$montoPagar."','".$saldoPendiente."','".$nuevoSaldo."','".$_SESSION['user_id']."')";
+	$insert = "insert into tblpagos(idFactura, fechaPago, montoPagado, saldoAnterior, saldoActual, idVendedor, conceptoPago) values('".$idRecibo."','".$fechaPago."','".$montoPagar."','".$saldoPendiente."','".$nuevoSaldo."','".$_SESSION['user_id']."','".$conceptoPago."')";
 
 
 	$result = mysqli_query($con, $insert);

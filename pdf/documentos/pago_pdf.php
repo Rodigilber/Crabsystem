@@ -19,7 +19,7 @@
 
 	// Buscar los pagos realizados a la factura seleccionada
 	$sql = "Select a.numero_factura, a.id_cliente, c.nombre_cliente, a.fecha_factura, a.total_venta,
-					       b.idPago, b.montoPagado, b.saldoAnterior, b.saldoActual, b.fechaPago
+					       b.idPago, b.montoPagado, b.conceptoPago, b.saldoAnterior, b.saldoActual, b.fechaPago
 					From tblpagos b 
 							INNER JOIN facturas a ON b.idFactura = a.id_factura
 							INNER JOIN clientes c ON c.id_cliente = a.id_cliente
