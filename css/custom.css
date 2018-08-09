@@ -73,3 +73,10 @@ http://work.smarchal.com/twbscolor/
   }
 }
 
+/* CSS rule para mostrar los saldos en una tabla remarcados en amarillo */
+tr.selected {
+
+   background-color: #ffb3b3;
+
+}
+
