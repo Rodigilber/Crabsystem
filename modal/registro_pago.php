@@ -47,6 +47,14 @@
 								<input type="text" class="form-control" id="datepicker1" name="fechaPago" required>
 							</div>
 						  </div>
+
+						   <div class="form-group">
+
+							<label for="Descripcion" class="col-sm-3 control-label">Por concepto de:</label>
+							<div class="col-sm-8">
+							  <input type="text" class="form-control" id="Descripcion" name="Descripcion"  required>
+							</div>
+						  </div>
 						  
 						  <div class="form-group">
 							<label for="montoPagar" class="col-sm-3 control-label">Monto Pagar</label>
