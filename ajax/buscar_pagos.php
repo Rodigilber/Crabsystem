@@ -37,7 +37,7 @@
 
 		// Buscar los pagos realizados a la factura seleccionada
 		$sql = "Select a.numero_factura, a.id_cliente, c.nombre_cliente, a.fecha_factura, a.total_venta,
-					       b.idPago, b.montoPagado, b.saldoAnterior, b.saldoActual, b.fechaPago
+					       b.idPago, b.montoPagado, b.conceptoPago, b.saldoAnterior, b.saldoActual, b.fechaPago
 					From tblpagos b 
 							INNER JOIN facturas a ON b.idFactura = a.id_factura
 							INNER JOIN clientes c ON c.id_cliente = a.id_cliente
@@ -58,6 +58,7 @@
 						<th>No Pago</th>
 						<th>Fecha Recibo</th>
 						<th>Fecha Pago</th>
+						<th>Concepto Pago</th>
 						<th>Monto Pagado</th>
 						<th>Saldo Anterior</th>
 						<th>Saldo Actual</th>
@@ -65,19 +66,32 @@
 
 			<?php
 
+
+					// Determinar el numero total de pagos realizados con el fin de determinar cual es el ultimo y la clase css para seleccionar 
+					// el saldo sea activada
+					$pagosTotales = $query->num_rows;
+
+					$noPago = 0;  
 					while ($row=mysqli_fetch_array($query)) {
+
+						$noPago++;
+
+						$selected = ( $noPago == $pagosTotales ) ? "selected" : "";
+
 						$numero_factura = $row["idPago"];
 						$fecha_factura  = date("d/m/Y", strtotime($row['fecha_factura']));
 						$fecha_Pago     = date("d/m/Y", strtotime($row['fechaPago']));
+						$conceptoPago   = $row["conceptoPago"];
 						$montoPagado    = $row["montoPagado"];
 						$saldoAnterior  = $row["saldoAnterior"];
 						$saldoActual    = $row["saldoActual"];
 			?>
 
-						<tr>
+						<tr class=<?php echo $selected; ?>>
 							<td><?php echo $numero_factura; ?></td>
 							<td><?php echo $fecha_factura; ?></td>
 							<td><?php echo $fecha_Pago; ?></td>
+							<td><?php echo $conceptoPago; ?></td>
 							<td><?php echo $montoPagado; ?></td>
 							<td><?php echo $saldoAnterior; ?></td>
 							<td><?php echo $saldoActual; ?></td>				

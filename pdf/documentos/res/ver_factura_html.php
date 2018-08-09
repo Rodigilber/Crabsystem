@@ -32,6 +32,14 @@ td    { vertical-align: top; }
 	border-bottom: solid 1px #bdc3c7;
 }
 table.page_footer {width: 100%; border: none; background-color: white; padding: 2mm;border-collapse:collapse; border: none;}
+
+/* CSS rule para mostrar los saldos en una tabla remarcados en amarillo */
+tr.selected {
+
+   background-color: #ffb3b3;
+
+}
+
 }
 -->
 </style>
@@ -201,9 +209,10 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             <th style="width: 5%"; class='midnight-blue'>Mes de Pago</th>
             <th style="width: 5%"; class='midnight-blue'>Fecha de Pago</th>
             <th style="width: 5%"; class='midnight-blue'>Cobrado por</th>
-            <th style="width: 15%;text-align: right" class='midnight-blue'>Monto Pagado</th>
-            <th style="width: 15%;text-align: right" class='midnight-blue'>Saldo Anterior</th>
-            <th style="width: 15%;text-align: right" class='midnight-blue'>Saldo Actual</th>
+            <th style="width: 14%;text-align: right" class='midnight-blue'>Monto Pagado</th>
+            <th style="width: 5%"; class='midnight-blue'>Concepto Pago</th>
+            <th style="width: 13%;text-align: right" class='midnight-blue'>Saldo Anterior</th>
+            <th style="width: 13%;text-align: right" class='midnight-blue'>Saldo Actual</th>
         </tr>
 
 			<?php
@@ -215,7 +224,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 					// $sql=mysqli_query($con, "select * from products, tmp where products.id_producto=tmp.id_producto and tmp.session_id='".$session_id."'");
 
 					$sql_pagos = "Select a.numero_factura, a.id_cliente, c.nombre_cliente, a.fecha_factura, a.total_venta,
-										       b.idPago, b.montoPagado, b.saldoAnterior, b.saldoActual, b.fechaPago, d.firstname
+										       b.idPago, b.montoPagado, b.conceptoPago, b.saldoAnterior, b.saldoActual, b.fechaPago, d.firstname
 										From tblpagos b 
 												INNER JOIN facturas a ON b.idFactura = a.id_factura
 												INNER JOIN clientes c ON c.id_cliente = a.id_cliente
@@ -236,9 +245,18 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 						           "Noviembre",
 						           "Diciembre" );
 
+					// Determinar el numero total de pagos realizados con el fin de determinar cual es el ultimo y la clase css para seleccionar 
+					// el saldo sea activada
+					$pagosTotales = $query_pagos->num_rows;
 
+					$noPago = 0;  
 					while ($row_pagos=mysqli_fetch_array($query_pagos))
 					{
+
+							
+							$noPago++;
+
+							$selected = ( $noPago == $pagosTotales ) ? "selected" : "";						
 							
 							$numero_factura = $row_pagos["idPago"];
 							$fecha_factura  = date("d/m/Y", strtotime($row_pagos['fecha_factura']));
@@ -250,19 +268,21 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 							$montoPagado    = $row_pagos["montoPagado"];
 							$saldoAnterior  = $row_pagos["saldoAnterior"];
 							$saldoActual    = $row_pagos["saldoActual"];
+							$conceptoPago   = $row_pagos["conceptoPago"];
 
 			?>
 
 
 
-								<tr>
+								<tr class=<?php echo $selected; ?>>
 									<td style="width: 10%; text-align: center"><?php echo $numero_factura; ?></td>
 									<td style="width: 20%; text-align: center"><?php echo $mes; ?></td>
 									<td style="width: 20%; text-align: center"><?php echo $fecha_Pago; ?></td>
-									<td style="width: 12%; text-align: center"><?php echo $cobradoPor; ?></td>
-									<td style="width: 12%; text-align: center"><?php echo $montoPagado; ?></td>
-									<td style="width: 12%; text-align: center"><?php echo $saldoAnterior; ?></td>
-									<td style="width: 12%; text-align: center"><?php echo $saldoActual; ?></td>				
+									<td style="width: 10%; text-align: center"><?php echo $cobradoPor; ?></td>
+									<td style="width: 10%; text-align: center"><?php echo $montoPagado; ?></td>
+									<td style="width: 10%; text-align: center"><?php echo $conceptoPago; ?></td>
+									<td style="width: 10%; text-align: center"><?php echo $saldoAnterior; ?></td>
+									<td style="width: 10%; text-align: center"><?php echo $saldoActual; ?></td>				
 								</tr>
 
 					<?php 
